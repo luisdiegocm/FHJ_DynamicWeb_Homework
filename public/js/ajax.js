@@ -177,7 +177,7 @@ function ajaxpost(){
     if(err || data === null) {
         alert("YOU ARE LOGGED IN");
     } else {
-        return data;
+        alert("ERR");
     }
 });
     mypostrequest.open("POST", "http://localhost:8888/login.html", true);

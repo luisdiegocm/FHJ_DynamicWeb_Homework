@@ -1,21 +1,39 @@
-"use strict"
-
-var redis = require("redis")
-
-var db = redis.createClient(6378,"127.0.0.1")
- 
-db.on("error", function (err) {
-    console.log("Error " + err);
-});
- 
-db.on("connect", runSample);
- 
-function onclick() {
-    console.log("We are in the OnClick");
-    // Get a value
-    db.get(document.getElementById("login").value;, function (err, reply) {
-        console.log(reply.toString());
-    });
+function ajaxRequest(){
+     var activexmodes=["Msxml2.XMLHTTP", "Microsoft.XMLHTTP"]; //activeX versions to check for in IE
+     if (window.ActiveXObject){ //Test for support for ActiveXObject in IE first (as XMLHttpRequest in IE7 is broken)
+      for (var i=0; i<activexmodes.length; i++){
+       try{
+        return new ActiveXObject(activexmodes[i]);
+       }
+       catch(e){
+        //suppress error
+       }
+      }
+     }
+     else if (window.XMLHttpRequest) // if Mozilla, Safari etc
+      return new XMLHttpRequest();
+     else
+      return false;
 }
-
-document.getElementById("login_commit").onclick = onclick;
+ 
+function ajaxpost(){
+    console.log("Entre al LOGIN");
+    var mypostrequest=new ajaxRequest();
+    mypostrequest.onreadystatechange=function(){
+     if (mypostrequest.readyState==4){
+      if (mypostrequest.status==200 || window.location.href.indexOf("http")==-1){
+       document.getElementById("result").innerHTML = mypostrequest.responseText;
+      }
+      else{
+       alert("An error has occured making the request");
+      }
+     }
+    }
+    
+    var userId = encodeURIComponent(document.getElementById("user").value);
+    var password = encodeURIComponent(document.getElementById("password").value);
+    var parameters="userId="+userId+"&password="+password;
+    mypostrequest.open("POST", "http://localhost:8080/login", true);
+    mypostrequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    mypostrequest.send(parameters);
+}

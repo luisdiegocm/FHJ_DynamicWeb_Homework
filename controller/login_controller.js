@@ -10,11 +10,12 @@ db.on("error", function (err) {
  
 db.on("connect", runSample);
  
-function runSample() {
+function onclick() {
+    console.log("We are in the OnClick");
     // Get a value
     db.get(document.getElementById("login").value;, function (err, reply) {
         console.log(reply.toString());
     });
 }
 
-document.getElementById("login_commit").onclick = runSample;
+document.getElementById("login_commit").onclick = onclick;

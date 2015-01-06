@@ -26,10 +26,10 @@ var restRouting = function(req,res,restUrl){
 	// get current User from Session
 	var user = session.user;
 	
-	//if (user == null){
-  		//req.url = "/page/login.html";
-  		//var restUrl= new up.UrlParser(req);  		
-  //}
+	if (user == null){
+  		req.url = "/page/login.html";
+  		var restUrl= new up.UrlParser(req);  		
+  }
   
   // routing section
   console.log("Routing: we analyse url and return 'something' for restUrl: ", restUrl);

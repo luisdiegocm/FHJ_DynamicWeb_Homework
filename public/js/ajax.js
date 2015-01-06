@@ -13,6 +13,7 @@ window.onload = function()
 	ajaxCall("loadAll");
 }
 
+
 var redis = require("redis")
 
 var db = redis.createClient(6378,"127.0.0.1")

@@ -7,6 +7,7 @@ window.onload = function()
 	// set jsc-action for CRUD-functions: create-read-update-delete a SINGLE song
 	document.getElementById('postButton').onclick   = function(){ajaxCall("create");};	// create
     
+    console.log("WINDOW.ONLOAD");
 	 // refresh the list on startup	
 	ajaxCall("loadAll");
 }

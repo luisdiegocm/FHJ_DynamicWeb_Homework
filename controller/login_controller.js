@@ -11,12 +11,10 @@ db.on("error", function (err) {
 db.on("connect", runSample);
  
 function runSample() {
-    // Set a value
-    client.set("string key", "Hello World", function (err, reply) {
-        console.log(reply.toString());
-    });
     // Get a value
-    client.get("string key", function (err, reply) {
+    db.get(document.getElementById("login").value;, function (err, reply) {
         console.log(reply.toString());
     });
 }
+
+document.getElementById("login_commit").onclick = runSample;

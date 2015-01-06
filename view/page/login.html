@@ -1,4 +1,4 @@
-      <form method="GET" action="">
+      <form method="POST">
         <p><input type="text" id="username" value="" placeholder="Username or Email"></p>
         <p><input type="password" id="password" value="" placeholder="Password"></p>
         <p class="remember_me">
@@ -7,5 +7,7 @@
             Remember me on this computer
           </label>
         </p>
-        <p class="submit"><input type="submit" id="login" value="Login" onClick=ajaxpost()></p>
+        <p class="submit"><input type="submit" id="login" value="Login" onclick="ajaxpost()"></p>
       </form>
+
+        <div id="result"></div>

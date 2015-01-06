@@ -7,7 +7,6 @@ window.onload = function()
 	// set jsc-action for CRUD-functions: create-read-update-delete a SINGLE song
 	document.getElementById('postButton').onclick   = function(){ajaxCall("create");};	// create
     
-    console.log("WINDOW.ONLOAD");
 	 // refresh the list on startup	
 	ajaxCall("loadAll");
 }
@@ -152,23 +151,36 @@ function ajaxRequest(){
 }
  
 function ajaxpost(){
-    console.log("Entre al LOGIN");
-    var mypostrequest=new ajaxRequest();
+    var redis = require("redis")
+
+    
+    var db = redis.createClient(6378,"127.0.0.1")
+    
+    alert("Entre al LOGIN");
+    var mypostrequest = new XMLHttpRequest();
     mypostrequest.onreadystatechange=function(){
-     if (mypostrequest.readyState==4){
-      if (mypostrequest.status==200 || window.location.href.indexOf("http")==-1){
-       document.getElementById("result").innerHTML = mypostrequest.responseText;
-      }
-      else{
-       alert("An error has occured making the request");
-      }
-     }
+        if (mypostrequest.readyState==4){
+                //if (mypostrequest.status==200){
+                    document.getElementById("result").innerHTML = mypostrequest.responseText;
+                //}
+                //else{
+                //    alert("An error has occured making the request");
+                //}
+        }
     }
     
-    var userId = encodeURIComponent(document.getElementById("user").value);
+    var userId = encodeURIComponent(document.getElementById("username").value);
     var password = encodeURIComponent(document.getElementById("password").value);
-    var parameters="userId="+userId+"&password="+password;
-    mypostrequest.open("POST", "http://localhost:8080/login", true);
+    var parameters="username="+userId+"&password="+password;
+    client.get(userId, function(err, data) {
+    // data is null if the key doesn't exist
+    if(err || data === null) {
+        alert("YOU ARE LOGGED IN");
+    } else {
+        return data;
+    }
+});
+    mypostrequest.open("POST", "http://localhost:8888/login.html", true);
     mypostrequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     mypostrequest.send(parameters);
 }

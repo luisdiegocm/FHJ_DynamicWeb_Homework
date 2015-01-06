@@ -156,7 +156,7 @@ function ajaxpost(){
     
     var db = redis.createClient(6378,"127.0.0.1")
     
-    alert("Entre al LOGIN");
+    debug("Entre al LOGIN");
     var mypostrequest = new XMLHttpRequest();
     mypostrequest.onreadystatechange=function(){
         if (mypostrequest.readyState==4){
@@ -175,9 +175,9 @@ function ajaxpost(){
     client.get(userId, function(err, data) {
     // data is null if the key doesn't exist
     if(err || data === null) {
-        alert("YOU ARE LOGGED IN");
+        debug("YOU ARE LOGGED IN");
     } else {
-        alert("ERR");
+        debug("ERR");
     }
 });
     mypostrequest.open("POST", "http://localhost:8888/login.html", true);

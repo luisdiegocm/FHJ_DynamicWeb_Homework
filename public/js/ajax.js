@@ -151,10 +151,10 @@ function ajaxRequest(){
 }
  
 function ajaxpost(){
-    var redis = require("redis")
+    //var redis = require("redis")
 
     
-    var db = redis.createClient(6378,"127.0.0.1")
+    //var db = redis.createClient(6378,"127.0.0.1")
     
     alert("Entre al LOGIN");
     var mypostrequest = new XMLHttpRequest();
@@ -172,14 +172,14 @@ function ajaxpost(){
     var userId = encodeURIComponent(document.getElementById("username").value);
     var password = encodeURIComponent(document.getElementById("password").value);
     var parameters="username="+userId+"&password="+password;
-    client.get(userId, function(err, data) {
+    //client.get(userId, function(err, data) {
     // data is null if the key doesn't exist
-    if(err || data === null) {
-        alert("YOU ARE LOGGED IN");
-    } else {
-        alert("ERR");
-    }
-});
+    //if(err || data === null) {
+    //    alert("YOU ARE LOGGED IN");
+    //} else {
+    //    alert("ERR");
+    //}
+//});
     mypostrequest.open("POST", "http://localhost:8888/login.html", true);
     mypostrequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     mypostrequest.send(parameters);
